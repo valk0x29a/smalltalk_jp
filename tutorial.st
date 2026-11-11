@@ -1,20 +1,5 @@
-Object subclass: OdcinekPodrozy [
-    | minuty |
-    OdcinekPodrozy class >> new [
-        |op|
-        op := super new.
-        op ustawCzas: 0.
-        ^op
-    ]
-
-    + drugi [
-        minuty := minuty + drugi czas.
-    ]
-
-    ustawCzas: liczba [
-        minuty := liczba.
-    ]
-    czas [ ^minuty ]
+OdcinekPodrozy subclass: OdcinekAutobusowy [
+czas [ ^super czas + 2 ]
 ]
 
 | pieszo autobus |
@@ -22,10 +7,6 @@ pieszo := OdcinekPodrozy new.
 autobus := OdcinekPodrozy new ustawCzas: 18.
 Transcript show: pieszo czas printString; cr. "0"
 Transcript show: autobus czas printString; cr. "18"
-
-OdcinekPodrozy subclass: OdcinekAutobusowy [
-czas [ ^super czas + 2 ]
-]
 
 | odcinek |
 odcinek := OdcinekAutobusowy new ustawCzas: 18.
