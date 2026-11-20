@@ -1,17 +1,16 @@
-OdcinekPodrozy subclass: OdcinekAutobusowy [
+"OdcinekPodrozy subclass: OdcinekAutobusowy [
 czas [ ^super czas + 2 ]
 ]
 
 | pieszo autobus |
 pieszo := OdcinekPodrozy new.
 autobus := OdcinekPodrozy new ustawCzas: 18.
-Transcript show: pieszo czas printString; cr. "0"
-Transcript show: autobus czas printString; cr. "18"
+Transcript show: pieszo czas printString; cr. 
+Transcript show: autobus czas printString; cr. 
 
 | odcinek |
 odcinek := OdcinekAutobusowy new ustawCzas: 18.
-Transcript show: odcinek czas printString; cr. "20"
-
+Transcript show: odcinek czas printString; cr. 
 | opis |
 opis := (OdcinekAutobusowy new isKindOf: OdcinekPodrozy)
 ifTrue: [ 'odcinek' ]
@@ -39,7 +38,7 @@ d := OdcinekPodrozy new ustawCzas: 20.
 lewa := a + b.
 prawa := c + d.
 dluzsza := lewa + c.
-calosc := lewa + prawa.
+calosc := lewa + prawa." 
 " sprawdz value: (lewa isKindOf: Trasa) value: 'Typ wyniku'.
 sprawdz value: (dluzsza odcinki asArray = (Array with: a with: b with: c))
 value: 'Trasa + odcinek'.

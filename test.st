@@ -1,4 +1,4 @@
-Object subclass: OdcinekPodrozy [
+"Object subclass: OdcinekPodrozy [
     | minuty |
     OdcinekPodrozy class >> new [
         |op|
@@ -15,6 +15,6 @@ Object subclass: OdcinekPodrozy [
         minuty := liczba.
     ]
     czas [ ^minuty ]
-]
+]"
 
 
