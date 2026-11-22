@@ -19,6 +19,9 @@ Object subclass: OdcinekPodrozy [
 
     ]
 
+    ustawCzas: minuty [
+        czas := minuty
+    ]
 
 
     dystans[
@@ -50,6 +53,33 @@ Object subclass: OdcinekPodrozy [
 
     ]
 
+    error: blad [
+        Transcript show: 'Błąd w Odcinku: ', blad; cr.
+    ]
+
+    + drugi [
+        (drugi isKindOf: OdcinekPodrozy)
+            ifTrue:
+            [
+                | wynik |
+                wynik := Trasa new.
+                wynik dodaj: self.
+                wynik dodaj: drugi.
+                ^wynik
+            ]
+            ifFalse: [ 
+                (drugi isKindOf: Trasa)
+                    ifTrue:
+                    [
+                        | wynik |
+                        wynik := Trasa new.
+                        wynik dodaj: self.
+                        wynik dodajWszytskie: drugi odcinki.
+                        ^wynik
+                    ]
+                    ifFalse: [ self error: 'Drugi obiekt nie jest ani Trasą ani Odcinkiem!!!'].
+            ].
+    ]
       
 ]
 
