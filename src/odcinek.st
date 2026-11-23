@@ -50,6 +50,7 @@ Object subclass: OdcinekPodrozy [
     opis[
         self wypiszCzas. ', ' display.
         ('koszt: ', (self koszt) printString, ' zł') displayNl.
+        (punktPoczatkowy, ' --> ', punktKoncowy) displayNl. '' displayNl.
 
     ]
 

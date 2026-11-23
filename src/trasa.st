@@ -95,6 +95,6 @@ Object subclass: Trasa [
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
         ('Czas: ', (self czas) printString, ' min') displayNl.
         ('Koszt: ', (self koszt) printString, ' zł') displayNl.
-        '-------------------------' displayNl.
+        '-------------------------' displayNl. '' displayNl.
     ]
 ]   
