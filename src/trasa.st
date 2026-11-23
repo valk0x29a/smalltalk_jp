@@ -85,6 +85,13 @@ Object subclass: Trasa [
         ^suma
     ]
 
+    emisjaCO2[
+        | emisja |
+        emisja := 0.
+        etapy do: [ :odcinek | emisja := emisja + odcinek emisjaCO2 ].
+        ^emisja
+    ]
+
     drukuj[
         '--------- TRASA ---------' displayNl.
         etapy keysAndValuesDo: [ :i :odcinek |
@@ -95,6 +102,24 @@ Object subclass: Trasa [
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
         ('Czas: ', (self czas) printString, ' min') displayNl.
         ('Koszt: ', (self koszt) printString, ' zł') displayNl.
+        ('Łączna emisja CO2: ', (self emisjaCO2) printString, ' kg') displayNl.
         '-------------------------' displayNl. '' displayNl.
+    ]
+
+    porownajEmisje: drugi [
+        (drugi isKindOf: Trasa)
+            ifTrue: [
+                | e1 e2 |
+                e1 := self emisjaCO2.
+                e2 := drugi emisjaCO2.
+                (e1 < e2)
+                    ifTrue: ['Pierwsza trasa jest mniej emisyjna.' displayNl]
+                    ifFalse: [
+                        (e1 > e2)
+                            ifTrue: ['Druga trasa jest mniej emisyjna.' displayNl]
+                            ifFalse: ['Obie trasy są tak samo emisyjne.' displayNl].
+                    ].
+            ]
+            ifFalse: [self error: 'Drugi obiekt nie jest Trasą!!!'].
     ]
 ]   

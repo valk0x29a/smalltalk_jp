@@ -50,7 +50,9 @@ Object subclass: OdcinekPodrozy [
     opis[
         self wypiszCzas. ', ' display.
         ('koszt: ', (self koszt) printString, ' zł') displayNl.
-        (punktPoczatkowy, ' --> ', punktKoncowy) displayNl. '' displayNl.
+        (punktPoczatkowy, ' --> ', punktKoncowy) displayNl.
+        ('Dystans: ', (self dystans) printString, ' km') displayNl.
+        ('Emisja CO2: ', (self emisjaCO2) printString, ' kg') displayNl. '' displayNl.
 
     ]
 
@@ -98,6 +100,12 @@ OdcinekPodrozy subclass: OdcinekPieszy[
         opoznienie2 sprawdz.
         czas := (dystans/5)*60 + opoznienie1 minuty + opoznienie2 minuty.
     ]
+
+    emisjaCO2[
+        | emisja |
+        emisja := dystans * 0.0.
+        ^emisja
+    ]
 ]
 
 OdcinekPodrozy subclass: OdcinekAutobusowy[
@@ -113,6 +121,12 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
         opoznienie2 sprawdz.
         czas := (dystans/50)*60 + opoznienie1 minuty + opoznienie2 minuty.
     ]
+
+    emisjaCO2[
+        | emisja |
+        emisja := dystans * 0.1.
+        ^emisja
+    ]
 ]
 
 OdcinekPodrozy subclass: OdcinekRowerowy[
@@ -127,5 +141,11 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         opoznienie1 sprawdz.
         opoznienie2 sprawdz.
         czas := (dystans/20)*60 + opoznienie1 minuty + opoznienie2 minuty.
+    ]
+
+    emisjaCO2[
+        | emisja |
+        emisja := dystans * 0.0.
+        ^emisja
     ]
 ]

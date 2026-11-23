@@ -37,8 +37,14 @@ odcinek3 opis.
 trasa := odcinek1 + odcinek2.
 cala_trasa := trasa + odcinek3. 
 
+
 trasa drukuj.
 cala_trasa drukuj.
+
+cala_trasa porownajEmisje: trasa.
+
+'' displayNl.
+
 " cala_trasa := trasa + 7.
 
 | a b c d lewa prawa dluzsza calosc sprawdz blad |
