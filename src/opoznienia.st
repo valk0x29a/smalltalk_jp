@@ -1,33 +1,39 @@
-Object subclas: opznienie[
-    |temat minuty|
+Object subclass: Opoznienie[
+    | temat minuty |
 
-    czas: c[
-        minuty := c.
+    initialize[
+        minuty := 0.
     ]
 
-    temat: t[
-        temat := t.
+    temat: tekst[
+        temat := tekst.
     ]
 
     minuty[
         ^minuty
     ]
+
     powod[
         ^temat
     ]
+
+    sprawdz[
+        | losowa |
+        losowa := (1 to: 2) atRandom.
+        (losowa = 1)
+            ifTrue: [
+                minuty := (10 to: 120) atRandom.
+                (minuty printString , ' min opoznienia przez ' , temat) displayNl.
+            ]
+            ifFalse: [ minuty := 0 ].
+    ]
 ]
 
-Opoznienie subclass: opoznienieAutobusu[
-    |typ|
-    typ = 'autobusu'
+Opoznienie subclass: OpoznienieAutobusu[
 ]
 
-Opoznienie subclass: opoznieniePiesze[
-    |typ|
-    typ = 'piesze'
+Opoznienie subclass: OpoznieniePiesze[
 ]
 
-Opoznienie subclass: opoznienieRowerowe[
-    |typ|
-    typ = 'rowerowe'
+Opoznienie subclass: OpoznienieRowerowe[
 ]

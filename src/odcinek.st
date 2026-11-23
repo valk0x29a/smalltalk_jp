@@ -1,5 +1,5 @@
 Object subclass: OdcinekPodrozy [
-    |dystans punktPoczatkowy punktKoncowy czas koszt typ| 
+    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2|
     initialize [
         czas := 0.
         typ := 'none'.
@@ -61,61 +61,69 @@ Object subclass: OdcinekPodrozy [
         (drugi isKindOf: OdcinekPodrozy)
             ifTrue:
             [
-                | wynik |
+                |wynik|
                 wynik := Trasa new.
                 wynik dodaj: self.
                 wynik dodaj: drugi.
                 ^wynik
             ]
-            ifFalse: [ 
+            ifFalse:
+            [
                 (drugi isKindOf: Trasa)
                     ifTrue:
                     [
-                        | wynik |
+                        |wynik|
                         wynik := Trasa new.
                         wynik dodaj: self.
                         wynik dodajWszytskie: drugi odcinki.
                         ^wynik
                     ]
-                    ifFalse: [ self error: 'Drugi obiekt nie jest ani Trasą ani Odcinkiem!!!'].
-            ].
+                    ifFalse: [self error: 'Drugi obiekt nie jest ani Trasą ani Odcinkiem!!!'].
+            ]
     ]
-      
 ]
 
-OdcinekPodrozy subclass:OdcinekPieszy[
+OdcinekPodrozy subclass: OdcinekPieszy[
     initialize [
         super initialize.
         typ := 'pieszo'.
         koszt := 0.
-        czas := (dystans/5)*60.
+        opoznienie1 := OpoznieniePiesze new.
+        opoznienie1 temat: 'roboty drogowe na chodniku'.
+        opoznienie2 := OpoznieniePiesze new.
+        opoznienie2 temat: 'burza'.
+        opoznienie1 sprawdz.
+        opoznienie2 sprawdz.
+        czas := (dystans/5)*60 + opoznienie1 minuty + opoznienie2 minuty.
     ]
-
-
-   
-
-    
 ]
 
-OdcinekPodrozy subclass:OdcinekAutobusowy[
+OdcinekPodrozy subclass: OdcinekAutobusowy[
     initialize [
         super initialize.
         typ := 'autobusem'.
         koszt := 2.
-        czas := (dystans/50)*60.
+        opoznienie1 := OpoznienieAutobusu new.
+        opoznienie1 temat: 'korek'.
+        opoznienie2 := OpoznienieAutobusu new.
+        opoznienie2 temat: 'autobus nie przyjechal'.
+        opoznienie1 sprawdz.
+        opoznienie2 sprawdz.
+        czas := (dystans/50)*60 + opoznienie1 minuty + opoznienie2 minuty.
     ]
-
-  
-
-    
 ]
 
-OdcinekPodrozy subclass:OdcinekRowerowy[
+OdcinekPodrozy subclass: OdcinekRowerowy[
     initialize[
         super initialize.
         typ := 'rowerem'.
         koszt := 1.
-        czas := (dystans/20)*60.
+        opoznienie1 := OpoznienieRowerowe new.
+        opoznienie1 temat: 'spadl lancuch'.
+        opoznienie2 := OpoznienieRowerowe new.
+        opoznienie2 temat: 'brak sciezki rowerowej'.
+        opoznienie1 sprawdz.
+        opoznienie2 sprawdz.
+        czas := (dystans/20)*60 + opoznienie1 minuty + opoznienie2 minuty.
     ]
-    
 ]

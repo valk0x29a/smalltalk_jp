@@ -1,6 +1,7 @@
 
 | odcinek1 odcinek2 odcinek3 trasa cala_trasa|
 
+FileStream fileIn: 'opoznienia.st'.
 FileStream fileIn: 'odcinek.st'.
 FileStream fileIn: 'trasa.st'.
 
