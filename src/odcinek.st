@@ -44,14 +44,15 @@ Object subclass: OdcinekPodrozy [
     ]
 
     wypiszCzas[
-        ('Podroz zajmie ', (self czas) printString, ' min ', typ) displayNl.
+        ('Podroz zajmie ', (self czas) printString, ' min ', typ) display.
     ]
 
     opis[
-        self wypiszCzas.
-        ('koszt: ', (self koszt) printString) displayNl.
+        self wypiszCzas. ', ' display.
+        ('koszt: ', (self koszt) printString, ' zł') displayNl.
 
     ]
+
 
     error: blad [
         Transcript show: 'Błąd w Odcinku: ', blad; cr.

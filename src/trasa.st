@@ -62,4 +62,39 @@ Object subclass: Trasa [
             ].
         
     ]
+
+
+    dystans [
+        | suma |
+        suma := 0.
+        etapy do: [ :odcinek | suma := suma + odcinek dystans ].
+        ^suma
+    ]
+
+    czas [
+        | suma |
+        suma := 0.
+        etapy do: [ :odcinek | suma := suma + odcinek czas ].
+        ^suma
+    ]
+
+    koszt [
+        | suma |
+        suma := 0.
+        etapy do: [ :odcinek | suma := suma + odcinek koszt ].
+        ^suma
+    ]
+
+    drukuj[
+        '--------- TRASA ---------' displayNl.
+        etapy keysAndValuesDo: [ :i :odcinek |
+            (i printString, '. ') display.
+            odcinek opis.
+        ].
+        '-------------------------' displayNl.
+        ('Dystans: ', (self dystans) printString, ' km') displayNl.
+        ('Czas: ', (self czas) printString, ' min') displayNl.
+        ('Koszt: ', (self koszt) printString, ' zł') displayNl.
+        '-------------------------' displayNl.
+    ]
 ]   
