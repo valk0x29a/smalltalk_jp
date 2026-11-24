@@ -63,10 +63,10 @@ Object subclass: Trasa [
 
 
     dystans [
-        | suma |
-        suma := 0.
-        etapy do: [ :odcinek | suma := suma + odcinek dystans ].
-        ^suma
+        | razem dystanse |
+        dystanse := etapy collect: [ :etap | etap dystans ].
+        razem := dystanse inject: 0 into: [ :suma :dystans | suma + dystans ].
+        ^razem
     ]
 
     czas [
@@ -80,10 +80,10 @@ Object subclass: Trasa [
     ]
 
     koszt [
-        | suma |
-        suma := 0.
-        etapy do: [ :odcinek | suma := suma + odcinek koszt ].
-        ^suma
+        | razem koszty |
+        koszty := etapy collect: [ :etap | etap koszt ].
+        razem := koszty inject: 0 into: [ :suma :koszt | suma + koszt ].
+        ^razem
     ]
 
     emisjaCO2[
