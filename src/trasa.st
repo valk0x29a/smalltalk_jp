@@ -66,8 +66,7 @@ Object subclass: Trasa [
 
     dystans [
         | suma |
-        suma := 0.
-        etapy do: [ :odcinek | suma := suma + odcinek dystans ].
+        suma := etapy collect: [ :odcinek | odcinek dystans ].
         ^suma
     ]
 
@@ -83,15 +82,13 @@ Object subclass: Trasa [
 
     koszt [
         | suma |
-        suma := 0.
-        etapy do: [ :odcinek | suma := suma + odcinek koszt ].
+        suma := etapy collect: [ :odcinek | odcinek koszt ].
         ^suma
     ]
 
     emisjaCO2[
         | emisja |
-        emisja := 0.
-        etapy do: [ :odcinek | emisja := emisja + odcinek emisjaCO2 ].
+        emisja := etapy collect: [ :odcinek | odcinek emisjaCO2 ].
         ^emisja
     ]
 
