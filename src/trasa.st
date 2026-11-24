@@ -74,7 +74,10 @@ Object subclass: Trasa [
     czas [
         | suma |
         suma := 0.
-        etapy do: [ :odcinek | suma := suma + odcinek czas ].
+        etapy do: [ :odcinek | 
+            suma := suma + odcinek czas_przesiadki.
+            suma := suma + odcinek czas.
+        ].
         ^suma
     ]
 
@@ -96,6 +99,18 @@ Object subclass: Trasa [
         '--------- TRASA ---------' displayNl.
         etapy keysAndValuesDo: [ :i :odcinek |
             (i printString, '. ') display.
+            (odcinek czas_przesiadki = 0)
+                ifTrue []
+                ifFalse [
+                (i = 0)
+                    ifTrue [ 'Czas oczekiwania:' ]
+                    ifFalse [ 'Czas na przesiadkę:' ]
+                    displayNl.
+                    odcinek czas_przesiadki.
+                ]
+
+
+            displayNl.
             odcinek opis.
         ].
         '-------------------------' displayNl.

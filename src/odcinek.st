@@ -1,9 +1,10 @@
 Object subclass: OdcinekPodrozy [
-    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2|
+    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2 czas_przesiadki|
     initialize [
         czas := 0.
         typ := 'none'.
         koszt := 0.
+        czas_przesiadki := 0.
     ]
 
     initDystans: km [
@@ -23,6 +24,10 @@ Object subclass: OdcinekPodrozy [
         czas := minuty
     ]
 
+
+    czas_przesiadki[
+        ^czas_przesiadki
+    ]
 
     dystans[
         ^dystans
@@ -127,6 +132,10 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
         emisja := dystans * 0.1.
         ^emisja
     ]
+
+    czas_przesiadki[
+        ^2
+    ]
 ]
 
 OdcinekPodrozy subclass: OdcinekRowerowy[
@@ -147,5 +156,9 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         | emisja |
         emisja := dystans * 0.0.
         ^emisja
+    ]
+
+    czas_przesiadki[
+        ^1
     ]
 ]
