@@ -6,31 +6,31 @@ FileStream fileIn: 'trasa.st'.
 
 odcinek1 := OdcinekPieszy new
     initDystans: 2;
-    initpunktPoczatkowy: 'uczelnia';
-    initpunktKoncowy: 'przystanek1';
+    initPunktPoczatkowy: 'uczelnia';
+    initPunktKoncowy: 'przystanek1';
     initialize;
     yourself.
 
 
 odcinek2 := OdcinekAutobusowy new
     initDystans: 40;
-    initpunktPoczatkowy: 'przystanek1';
-    initpunktKoncowy: 'przystanek2';
+    initPunktPoczatkowy: 'przystanek1';
+    initPunktKoncowy: 'przystanek2';
     initialize;
     yourself.
 
 
 odcinek3 := OdcinekRowerowy new
     initDystans: 1;
-    initpunktPoczatkowy: 'przystanek2';
-    initpunktKoncowy: 'przystanek3';
+    initPunktPoczatkowy: 'przystanek2';
+    initPunktKoncowy: 'przystanek3';
     initialize;
     yourself.
 
 odcinek4 := OdcinekTramwajowy new
     initDystans: 35;
-    initpunktPoczatkowy: 'przystanek3';
-    initpunktKoncowy: 'dom';
+    initPunktPoczatkowy: 'przystanek3';
+    initPunktKoncowy: 'dom';
     initialize;
     yourself.
 

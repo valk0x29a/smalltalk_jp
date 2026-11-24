@@ -20,7 +20,7 @@ Object subclass: Trasa [
             ifFalse: [ self error: 'Dodany obiekt nie jest Odcinkiem!' ].
     ]
 
-    dodajWszytskie: drugi [
+    dodajWszystkie: drugi [
         (drugi isKindOf: OrderedCollection)
             ifTrue: [ etapy addAll: drugi]
             ifFalse: [ 
@@ -42,7 +42,7 @@ Object subclass: Trasa [
             [
                 | wynik |
                 wynik := Trasa new.
-                wynik dodajWszytskie: etapy.
+                wynik dodajWszystkie: etapy.
                 wynik dodaj: drugi.
                 ^wynik
             ]
@@ -52,8 +52,8 @@ Object subclass: Trasa [
                     [
                         | wynik |
                         wynik := Trasa new.
-                        wynik dodajWszytskie: etapy.
-                        wynik dodajWszytskie: drugi odcinki.
+                        wynik dodajWszystkie: etapy.
+                        wynik dodajWszystkie: drugi odcinki.
                         ^wynik
                     ]
                     ifFalse: [ self error: 'Drugi obiekt nie jest ani Trasą ani Odcinkiem!!!'].

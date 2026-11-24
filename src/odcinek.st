@@ -11,11 +11,11 @@ Object subclass: OdcinekPodrozy [
         dystans := km.
     ]
 
-    initpunktKoncowy: pk [
+    initPunktKoncowy: pk [
         punktKoncowy := pk.
     ]
 
-    initpunktPoczatkowy: pp[
+    initPunktPoczatkowy: pp[
         punktPoczatkowy := pp.
 
     ]
@@ -72,7 +72,7 @@ Object subclass: OdcinekPodrozy [
                         |wynik|
                         wynik := Trasa new.
                         wynik dodaj: self.
-                        wynik dodajWszytskie: drugi odcinki.
+                        wynik dodajWszystkie: drugi odcinki.
                         ^wynik
                     ]
                     ifFalse: [self error: 'Drugi obiekt nie jest ani Trasą ani Odcinkiem!!!'].
@@ -95,9 +95,7 @@ OdcinekPodrozy subclass: OdcinekPieszy[
     ]
 
     emisjaCO2[
-        | emisja |
-        emisja := dystans * 0.0.
-        ^emisja
+        ^dystans * 0.0.
     ]
 ]
 
@@ -117,9 +115,7 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
     ]
 
     emisjaCO2[
-        | emisja |
-        emisja := dystans * 0.1.
-        ^emisja
+        ^dystans * 0.1
     ]
 ]
 
@@ -138,9 +134,7 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
     ]
 
     emisjaCO2[
-        | emisja |
-        emisja := dystans * 0.0.
-        ^emisja
+        ^dystans * 0.0.
     ]
 ]
 
@@ -160,9 +154,7 @@ OdcinekPodrozy subclass: OdcinekTramwajowy[
     ]
 
     emisjaCO2[
-        | emisja |
-        emisja := dystans * 0.05.
-        ^emisja
+        ^dystans * 0.05.
     ]
 ]
 
