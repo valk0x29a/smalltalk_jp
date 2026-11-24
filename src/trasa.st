@@ -98,20 +98,17 @@ Object subclass: Trasa [
     drukuj[
         '--------- TRASA ---------' displayNl.
         etapy keysAndValuesDo: [ :i :odcinek |
-            (i printString, '. ') display.
             (odcinek czas_przesiadki = 0)
-                ifTrue []
-                ifFalse [
-                (i = 0)
-                    ifTrue [ 'Czas oczekiwania:' ]
-                    ifFalse [ 'Czas na przesiadkę:' ]
-                    displayNl.
-                    odcinek czas_przesiadki.
-                ]
-
-
-            displayNl.
-            odcinek opis.
+               ifTrue: []
+               ifFalse: [
+                    (i = 1)
+                        ifTrue: [ 'Czas oczekiwania: ' display. ]
+                        ifFalse: [ 'Czas na przesiadkę: ' display. ].
+                    (odcinek czas_przesiadki) displayNl.
+                    ('') displayNl.
+               ].
+            (i printString, '. ') display.
+            odcinek opis: i.
         ].
         '-------------------------' displayNl.
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
