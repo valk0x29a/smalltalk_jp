@@ -9,13 +9,9 @@ Object subclass: Opoznienie[
         temat := tekst.
     ]
 
-    minuty[
-        ^minuty
-    ]
+    minuty[ ^minuty ]
 
-    powod[
-        ^temat
-    ]
+    powod[ ^temat ]
 
     sprawdz[
         | losowa |
@@ -36,4 +32,7 @@ Opoznienie subclass: OpoznieniePiesze[
 ]
 
 Opoznienie subclass: OpoznienieRowerowe[
+]
+
+Opoznienie subclass: OpoznienieTramwaju[
 ]

@@ -25,44 +25,28 @@ Object subclass: OdcinekPodrozy [
     ]
 
 
-    czas_przesiadki[
-        ^czas_przesiadki
-    ]
+    czas_przesiadki[ ^czas_przesiadki ]
 
-    dystans[
-        ^dystans
-    ]
+    dystans[ ^dystans ]
 
-    punktKoncowy[
-        ^punktKoncowy
-    ]
+    punktKoncowy[ ^punktKoncowy ]
 
-    punktPoczatkowy[
-        ^punktPoczatkowy
-    ]
-    koszt[
-       ^koszt
-    ]
+    punktPoczatkowy[ ^punktPoczatkowy ]
 
-    czas[
-       ^czas
-    ]
+    koszt[ ^koszt ]
+
+    czas[ ^czas ]
 
     wypiszCzas[
-        ('Podroz zajmie ', (self czas + self czas_przesiadki) printString, ' min ', typ) display.
+        ('Podroz zajmie ', (self czas) printString, ' min ', typ) display.
     ]
 
-    opis: index[
+    opis[
         self wypiszCzas. ', ' display.
         ('koszt: ', (self koszt) printString, ' zł') displayNl.
         (punktPoczatkowy, ' --> ', punktKoncowy) displayNl.
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
         ('Emisja CO2: ', (self emisjaCO2) printString, ' kg') displayNl. '' displayNl.
-
-    ]
-
-    opis[
-        self opis: 1
     ]
 
 
@@ -129,7 +113,7 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
         opoznienie1 sprawdz.
         opoznienie2 sprawdz.
         czas := (dystans/50)*60 + opoznienie1 minuty + opoznienie2 minuty.
-        czas_przesiadki := czas_przesiadki := (1 to: 5) atRandom.
+        czas_przesiadki := czas_przesiadki := (2 to: 7) atRandom.
     ]
 
     emisjaCO2[
@@ -151,7 +135,6 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         opoznienie1 sprawdz.
         opoznienie2 sprawdz.
         czas := (dystans/20)*60 + opoznienie1 minuty + opoznienie2 minuty.
-        czas_przesiadki := (0 to: 2) atRandom.
     ]
 
     emisjaCO2[
@@ -160,3 +143,26 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         ^emisja
     ]
 ]
+
+OdcinekPodrozy subclass: OdcinekTramwajowy[
+    initialize [
+        super initialize.
+        typ := 'tramwajem'.
+        koszt := 2.
+        opoznienie1 := OpoznienieTramwaju new.
+        opoznienie1 temat: 'wypadek tramwajowy'.
+        opoznienie2 := OpoznienieTramwaju new.
+        opoznienie2 temat: 'tramwaj nie przyjechal'.
+        opoznienie1 sprawdz.
+        opoznienie2 sprawdz.
+        czas := (dystans/50)*50 + opoznienie1 minuty + opoznienie2 minuty.
+        czas_przesiadki := czas_przesiadki := (1 to: 5) atRandom.
+    ]
+
+    emisjaCO2[
+        | emisja |
+        emisja := dystans * 0.05.
+        ^emisja
+    ]
+]
+

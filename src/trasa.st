@@ -12,9 +12,7 @@ Object subclass: Trasa [
         ^op
     ]
 
-    odcinki [
-        ^etapy
-    ]
+    odcinki [ ^etapy ]
 
     dodaj: odcinek [
         (odcinek isKindOf: OdcinekPodrozy)
@@ -101,14 +99,11 @@ Object subclass: Trasa [
             (odcinek czas_przesiadki = 0)
                ifTrue: []
                ifFalse: [
-                    (i = 1)
-                        ifTrue: [ 'Czas oczekiwania: ' display. ]
-                        ifFalse: [ 'Czas na przesiadkę: ' display. ].
-                    (odcinek czas_przesiadki) displayNl.
-                    ('') displayNl.
+                    'Czas oczekiwania: ' display.
+                    (odcinek czas_przesiadki printString, ' min') displayNl.
                ].
             (i printString, '. ') display.
-            odcinek opis: i.
+            odcinek opis.
         ].
         '-------------------------' displayNl.
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
