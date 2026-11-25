@@ -35,20 +35,22 @@ odcinek4 := OdcinekTramwajowy new
 
 
 
-odcinek1 opis.
+"odcinek1 opis.
 odcinek2 opis.
 odcinek3 opis.
 odcinek4 opis.
-
+"
 trasa1 := odcinek1 + odcinek2.
 trasa2 := odcinek3 + odcinek4.
 cala_trasa := trasa1 + trasa2. 
 trasa := trasa1 + odcinek3.
 trasa := odcinek4 + trasa2.
 
-"odcinek2 ustawOpoznienie: 69."
+"odcinek2 ustawCzas: 1.
+odcinek2 ustawOpoznienie: 69."
 trasa1 drukuj.
 trasa2 drukuj.
+"cala_trasa drukuj."
 
 trasa1 porownajEmisje: trasa2.
 
