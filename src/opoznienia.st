@@ -1,4 +1,4 @@
-Object subclass: Opoznienie[
+"Object subclass: Opoznienie[
     | temat minuty |
 
     initialize[
@@ -35,4 +35,4 @@ Opoznienie subclass: OpoznienieRowerowe[
 ]
 
 Opoznienie subclass: OpoznienieTramwaju[
-]
+]"

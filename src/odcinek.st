@@ -1,5 +1,5 @@
 Object subclass: OdcinekPodrozy [
-    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2 czas_przesiadki opoznienie |
+    |dystans punktPoczatkowy punktKoncowy czas koszt typ czas_przesiadki opoznienie |
     initialize [
         czas := 0.
         typ := 'none'.
@@ -25,9 +25,12 @@ Object subclass: OdcinekPodrozy [
         czas := minuty
     ]
 
+    mozeMiecOpoznienie [ ^true ]
 
     ustawOpoznienie: minuty [
-        opoznienie := minuty
+        (self mozeMiecOpoznienie)
+            ifTrue: [ opoznienie := minuty ]
+            ifFalse: [ ('') ].
     ]
 
     czas_przesiadki[^czas_przesiadki]
@@ -51,7 +54,7 @@ Object subclass: OdcinekPodrozy [
         ('koszt: ', (self koszt) printString, ' zł') displayNl.
         (opoznienie = 0)
             ifTrue: []
-            ifFalse: [ ('Opoznienie: ' opoznienie) displayNl. ].
+            ifFalse: [ ('Opoznienie: ', opoznienie printString, ' min') displayNl. ].
         (punktPoczatkowy, ' --> ', punktKoncowy) displayNl.
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
         ('Emisja CO2: ', (self emisjaCO2) printString, ' kg') displayNl. '' displayNl.
@@ -93,19 +96,14 @@ OdcinekPodrozy subclass: OdcinekPieszy[
         super initialize.
         typ := 'pieszo'.
         koszt := 0.
-        opoznienie := (0 to: 120) atRandom.
-"        opoznienie1 := OpoznieniePiesze new.
-        opoznienie1 temat: 'roboty drogowe na chodniku'.
-        opoznienie2 := OpoznieniePiesze new.
-        opoznienie2 temat: 'burza'.
-        opoznienie1 sprawdz.
-        opoznienie2 sprawdz."
         czas := (dystans/5)*60 + opoznienie.
     ]
 
     emisjaCO2[
         ^dystans * 0.0.
     ]
+
+    mozeMiecOpoznienie[ ^false ]
 ]
 
 OdcinekPodrozy subclass: OdcinekAutobusowy[
@@ -114,12 +112,6 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
         typ := 'autobusem'.
         koszt := 2.
         opoznienie := (0 to: 120) atRandom.
-"        opoznienie1 := OpoznienieAutobusu new.
-        opoznienie1 temat: 'korek'.
-        opoznienie2 := OpoznienieAutobusu new.
-        opoznienie2 temat: 'autobus nie przyjechal'.
-        opoznienie1 sprawdz.
-        opoznienie2 sprawdz."
         czas := (dystans/50)*60 + opoznienie.
         czas_przesiadki := (2 to: 7) atRandom.
     ]
@@ -134,19 +126,14 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         super initialize.
         typ := 'rowerem'.
         koszt := 1.
-        opoznienie := (0 to: 120) atRandom.
-"        opoznienie1 := OpoznienieRowerowe new.
-        opoznienie1 temat: 'spadl lancuch'.
-        opoznienie2 := OpoznienieRowerowe new.
-        opoznienie2 temat: 'brak sciezki rowerowej'.
-        opoznienie1 sprawdz.
-        opoznienie2 sprawdz."
         czas := (dystans/20)*60.
     ]
 
     emisjaCO2[
         ^dystans * 0.0.
     ]
+
+    mozeMiecOpoznienie[ ^false ]
 ]
 
 OdcinekPodrozy subclass: OdcinekTramwajowy[
@@ -154,12 +141,7 @@ OdcinekPodrozy subclass: OdcinekTramwajowy[
         super initialize.
         typ := 'tramwajem'.
         koszt := 2.
-"        opoznienie1 := OpoznienieTramwaju new.
-        opoznienie1 temat: 'wypadek tramwajowy'.
-        opoznienie2 := OpoznienieTramwaju new.
-        opoznienie2 temat: 'tramwaj nie przyjechal'.
-        opoznienie1 sprawdz.
-        opoznienie2 sprawdz."
+        opoznienie := (0 to: 120) atRandom.
         czas := (dystans/50)*50.
         czas_przesiadki := (1 to: 5) atRandom.
     ]
