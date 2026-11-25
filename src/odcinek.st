@@ -1,10 +1,11 @@
 Object subclass: OdcinekPodrozy [
-    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2 czas_przesiadki|
+    |dystans punktPoczatkowy punktKoncowy czas koszt typ opoznienie1 opoznienie2 czas_przesiadki opoznienie |
     initialize [
         czas := 0.
         typ := 'none'.
         koszt := 0.
         czas_przesiadki := 0.
+        opoznienie := 0
     ]
 
     initDystans: km [
@@ -25,7 +26,11 @@ Object subclass: OdcinekPodrozy [
     ]
 
 
-    czas_przesiadki[ ^czas_przesiadki ]
+    ustawOpoznienie: minuty [
+        opoznienie := minuty
+    ]
+
+    czas_przesiadki[^czas_przesiadki]
 
     dystans[ ^dystans ]
 
@@ -35,7 +40,7 @@ Object subclass: OdcinekPodrozy [
 
     koszt[ ^koszt ]
 
-    czas[ ^czas ]
+    czas[ ^czas + opoznienie ]
 
     wypiszCzas[
         ('Podroz zajmie ', (self czas) printString, ' min ', typ) display.
@@ -44,6 +49,9 @@ Object subclass: OdcinekPodrozy [
     opis[
         self wypiszCzas. ', ' display.
         ('koszt: ', (self koszt) printString, ' zł') displayNl.
+        (opoznienie = 0)
+            ifTrue: []
+            ifFalse: [ ('Opoznienie: ' opoznienie) displayNl. ].
         (punktPoczatkowy, ' --> ', punktKoncowy) displayNl.
         ('Dystans: ', (self dystans) printString, ' km') displayNl.
         ('Emisja CO2: ', (self emisjaCO2) printString, ' kg') displayNl. '' displayNl.
@@ -85,13 +93,14 @@ OdcinekPodrozy subclass: OdcinekPieszy[
         super initialize.
         typ := 'pieszo'.
         koszt := 0.
-        opoznienie1 := OpoznieniePiesze new.
+        opoznienie := (0 to: 120) atRandom.
+"        opoznienie1 := OpoznieniePiesze new.
         opoznienie1 temat: 'roboty drogowe na chodniku'.
         opoznienie2 := OpoznieniePiesze new.
         opoznienie2 temat: 'burza'.
         opoznienie1 sprawdz.
-        opoznienie2 sprawdz.
-        czas := (dystans/5)*60 + opoznienie1 minuty + opoznienie2 minuty.
+        opoznienie2 sprawdz."
+        czas := (dystans/5)*60 + opoznienie.
     ]
 
     emisjaCO2[
@@ -104,14 +113,15 @@ OdcinekPodrozy subclass: OdcinekAutobusowy[
         super initialize.
         typ := 'autobusem'.
         koszt := 2.
-        opoznienie1 := OpoznienieAutobusu new.
+        opoznienie := (0 to: 120) atRandom.
+"        opoznienie1 := OpoznienieAutobusu new.
         opoznienie1 temat: 'korek'.
         opoznienie2 := OpoznienieAutobusu new.
         opoznienie2 temat: 'autobus nie przyjechal'.
         opoznienie1 sprawdz.
-        opoznienie2 sprawdz.
-        czas := (dystans/50)*60 + opoznienie1 minuty + opoznienie2 minuty.
-        czas_przesiadki := czas_przesiadki := (2 to: 7) atRandom.
+        opoznienie2 sprawdz."
+        czas := (dystans/50)*60 + opoznienie.
+        czas_przesiadki := (2 to: 7) atRandom.
     ]
 
     emisjaCO2[
@@ -124,13 +134,14 @@ OdcinekPodrozy subclass: OdcinekRowerowy[
         super initialize.
         typ := 'rowerem'.
         koszt := 1.
-        opoznienie1 := OpoznienieRowerowe new.
+        opoznienie := (0 to: 120) atRandom.
+"        opoznienie1 := OpoznienieRowerowe new.
         opoznienie1 temat: 'spadl lancuch'.
         opoznienie2 := OpoznienieRowerowe new.
         opoznienie2 temat: 'brak sciezki rowerowej'.
         opoznienie1 sprawdz.
-        opoznienie2 sprawdz.
-        czas := (dystans/20)*60 + opoznienie1 minuty + opoznienie2 minuty.
+        opoznienie2 sprawdz."
+        czas := (dystans/20)*60.
     ]
 
     emisjaCO2[
@@ -143,14 +154,14 @@ OdcinekPodrozy subclass: OdcinekTramwajowy[
         super initialize.
         typ := 'tramwajem'.
         koszt := 2.
-        opoznienie1 := OpoznienieTramwaju new.
+"        opoznienie1 := OpoznienieTramwaju new.
         opoznienie1 temat: 'wypadek tramwajowy'.
         opoznienie2 := OpoznienieTramwaju new.
         opoznienie2 temat: 'tramwaj nie przyjechal'.
         opoznienie1 sprawdz.
-        opoznienie2 sprawdz.
-        czas := (dystans/50)*50 + opoznienie1 minuty + opoznienie2 minuty.
-        czas_przesiadki := czas_przesiadki := (1 to: 5) atRandom.
+        opoznienie2 sprawdz."
+        czas := (dystans/50)*50.
+        czas_przesiadki := (1 to: 5) atRandom.
     ]
 
     emisjaCO2[
